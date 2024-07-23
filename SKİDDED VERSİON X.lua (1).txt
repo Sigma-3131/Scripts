@@ -1,0 +1,617 @@
+--[[
+	  __   ___ ____     __ ____    _  _ ____ ____  __ ____ ____    _  _ ____ ____  ____ __ __  __ _    _  _
+	 / _\ / __|  __)   /  (  __)  / )( (  __|  _ \/  (  __) ___)  / )( (  __|  _ \/ ___|  )  \(  ( \  ( \/ )
+	/    ( (_ \) _)   (  O ) _)   ) __ () _) )   (  O ) _)\___ \  \ \/ /) _) )   /\___ \)(  O )    /   )  (
+	\_/\_/\___(____)   \__(__)    \_)(_(____|__\_)\__(____|____/   \__/(____|__\_)(____(__)__/\_)__)  (_/\_)
+
+	Source:
+
+	Version:
+		X
+	Date:
+		October 19th, 2020
+	Author:
+		(Ommitted due to ban possibility) @ v3rmillion.net / OminousVibes#6156  @ discord.gg
+]]
+
+--[[
+local PersonalWhitelist = {
+    850621052, -- My own Account
+    78112836, -- Shadows
+    1645411505, -- 2ks
+    630348358, -- Dev_Zach
+    1347310931, -- Elephon's main
+    1323409482 -- Elephon's alt
+}
+
+local Whitelist = {
+    311911940,
+    503505663,
+    1555325142,
+    135470789,
+    950216146,
+    1571948116,
+    5499646,
+    1278113240,
+    1079318815,
+    981759884,
+    527038404,
+    1019381421,
+    1133770635,
+    1384403291,
+    649879551,
+    86936778,
+    503505663,
+    1307151182,
+    395180625,
+    43845055,
+    5570718364,
+    20390596
+}
+
+for i,v in ipairs(PersonalWhitelist) do
+    table.insert(Whitelist, v)
+end
+
+]]
+
+
+game:GetService("StarterGui"):SetCore("SendNotification",{
+                Title = "COME SERVER NİGGA!!!!!!";
+                Text = "https://discord.com/invite/YZPdChTRT8";
+            })
+
+
+
+
+-- // CONSTANTS \\ --
+
+-- [[ Library ]] --
+local Library = loadstring(
+	game:HttpGet("https://raw.githubusercontent.com/Example-1811/Test-1/main/Csx%20is%20Skid", true)
+)()
+
+-- Services --
+local WorkspaceService = game:GetService("Workspace")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local PlayerService = game:GetService("Players")
+
+local RunService = game:GetService("RunService")
+local HttpService = game:GetService("HttpService")
+
+-- Remotes --
+local Remotes = ReplicatedStorage:WaitForChild("Events")
+
+-- LocalPlayer --
+local LocalPlayer = PlayerService.LocalPlayer
+
+local CurrentCamera = WorkspaceService.CurrentCamera
+
+local PlayerStats = Instance.new("StringValue")
+
+-- LocalPlayer Character Content --
+local LocalPlayerCharacter = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local LocalPlayerHumanoidRootPart = LocalPlayerCharacter:WaitForChild("HumanoidRootPart")
+local LocalPlayerHumanoid = LocalPlayerCharacter:WaitForChild("Humanoid")
+
+LocalPlayer.CharacterAdded:Connect(function(Character)
+	LocalPlayerCharacter = Character
+	LocalPlayerHumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+	LocalPlayerHumanoid = Character:WaitForChild("Humanoid")
+
+	PlayerStats.Value = HttpService:JSONEncode(
+		Remotes.GetStats:InvokeServer({ "upgrades", "perkPoints", "vitality", "energy", "strength", "healing", "money" })
+	)
+end)
+
+-- WL --
+--[[
+local Count = 0
+for i,v in next, getreg() do
+	if typeof(v) == 'function' and is_synapse_function(v) and typeof(i) == 'string' and i:len() == 16 then
+		Count = Count + 1
+	end
+end
+
+if Count > 53 then
+    LocalPlayer:Kick("Do not use hookfunctions before executing this script")
+	return
+end
+
+if PlayerService:GetUserIdFromNameAsync(LocalPlayer.Name) ~= LocalPlayer.UserId then
+    LocalPlayer:Kick("Do not attempt to spoof your ID")
+	return
+end
+
+if not table.find(Whitelist, LocalPlayer.UserId) then
+    LocalPlayer:Kick("Not Whitelisted")
+	return
+end
+]]
+
+-- // VARIABLES \\ --
+
+local CurrentPunch = 1
+local PunchCooldown = 0
+local TelekinesisCooldown = 0
+
+local AutofarmSectionSettings = {}
+AutofarmSectionSettings.NPC = {
+	Enabled = false,
+	NPC = "Thug",
+}
+AutofarmSectionSettings.ORB = {
+	Enabled = false,
+	FarmMethod = "Wave",
+}
+
+local StatSectionSettings = {}
+StatSectionSettings.StatAllocation = {
+	Enabled = false,
+	Stat = "Vitality",
+	AllocateAmount = 1,
+}
+
+local PvpSectionSettings = {}
+PvpSectionSettings.Telekinesis = {
+	Spam = false,
+	Kill = false,
+	AutoClean = false,
+}
+PvpSectionSettings.Bot = {
+	AutoPunch = false,
+	AutoPunchSpeed = 1,
+	AutoPunchCooldown = 0,
+}
+
+-- // FUNCTIONS \\ --
+
+-- [ Supplement ] --
+local function GetClosestCharacter()
+	local Distance = math.huge
+	local Current
+
+	for i, v in ipairs(WorkspaceService:GetChildren()) do
+		local HRP = v:FindFirstChild("HumanoidRootPart")
+		local HUM = v:FindFirstChildOfClass("Humanoid")
+		if HRP and HUM and HUM.Health > 0 then
+			local Mag = (LocalPlayerHumanoidRootPart.Position - HRP.Position).Magnitude
+
+			if Mag < Distance then
+				Distance = Mag
+				Current = v
+			end
+		end
+	end
+
+	return Current
+end
+
+local function GetClosestPlayer()
+	local Distance = math.huge
+	local Current
+
+	for i, v in ipairs(PlayerService:GetPlayers()) do
+		local Character = v.Character
+		if Character then
+			local HRP = Character:FindFirstChild("HumanoidRootPart")
+			local HUM = Character:FindFirstChildOfClass("Humanoid")
+			if HRP and HUM and HUM.Health > 0 then
+				local Mag = (LocalPlayerHumanoidRootPart.Position - HRP.Position).Magnitude
+
+				if Mag < Distance then
+					Distance = Mag
+					Current = v
+				end
+			end
+		end
+	end
+
+	return Current
+end
+
+-- [ Main ] --
+local function Attack(Name)
+	local Character = WorkspaceService:FindFirstChild(Name)
+
+	if Name == "Civ/Police" then
+		Character = WorkspaceService:FindFirstChild("Police") or WorkspaceService:FindFirstChild("Civilian")
+	end
+
+	if not Character then
+		return
+	end
+
+	local Character_HRP = Character:WaitForChild("HumanoidRootPart")
+	local Character_Humanoid = Character:WaitForChild("Humanoid")
+
+	if Character_Humanoid.Health <= 0 then
+		Character:Destroy()
+		return
+	end
+
+	LocalPlayerHumanoidRootPart.CFrame = Character_HRP.CFrame * CFrame.new(0, 0, 1.5)
+
+	PunchCooldown = PunchCooldown + 1
+
+	if PunchCooldown > 15 then
+		PunchCooldown = 0
+		Remotes.Punch:FireServer(0, 0.1, 1)
+	end
+end
+
+local function Telekinesis(Direction)
+	local Tick = 0
+
+	local Target
+	local HumanoidRootPart
+	local TelekinesisPosition
+
+	repeat
+		if Direction then
+			Target = Remotes.ToggleTelekinesis:InvokeServer(Direction, true)
+		else
+			Target = Remotes.ToggleTelekinesis:InvokeServer(CurrentCamera.CFrame.LookVector.Unit, true)
+		end
+
+		Tick = Tick + 1
+		if Tick > 10 then
+			return nil, nil, nil
+		end
+
+		RunService.Heartbeat:Wait()
+	until Target
+
+	HumanoidRootPart = Target:WaitForChild("HumanoidRootPart")
+	TelekinesisPosition = HumanoidRootPart:WaitForChild("telekinesisPosition")
+
+	return Target, HumanoidRootPart, TelekinesisPosition
+end
+
+-- // GUI \\ --
+
+-- [[ Window ]] --
+local Window = Library.new(true)
+Window.ChangeToggleKey(Enum.KeyCode.B)
+
+-- [[ Catagories ]] --
+local UserInterfaceCategories = {}
+UserInterfaceCategories.Autofarm = Window:Category("Autofarm")
+UserInterfaceCategories.Stats = Window:Category("Stats")
+UserInterfaceCategories.PVP = Window:Category("PVP")
+UserInterfaceCategories.Misc = Window:Category("Miscellaneous")
+
+-- [[ Catagory: Autofarm ]] --
+local AutofarmSectors = {}
+
+-- [ Sector: NPC ] --
+-- Sector --
+AutofarmSectors.NPC = UserInterfaceCategories.Autofarm:Sector("NPC")
+
+-- Toggle --
+AutofarmSectors.NPC:Toggle("Farming Enabled", function(bool)
+	AutofarmSectionSettings.NPC.Enabled = bool
+end)
+
+-- Reach --
+AutofarmSectors.NPC:Button("Tool Reach", "Generate", function()
+	local Tool = Instance.new("Tool")
+	Tool.Name = "Reach"
+	Tool.Parent = LocalPlayer.Character
+	Tool.RequiresHandle = true
+	local Part = Instance.new("Part")
+	Part.Name = "Handle"
+	Part.Parent = Tool
+	Part.Transparency = 1
+end)
+
+-- Target NPC --
+AutofarmSectors.NPC:Dropdown("Farming NPC:", { "Thug", "Civilian", "Police", "Civ/Police" }, function(Option)
+	AutofarmSectionSettings.NPC.NPC = Option
+end)
+
+-- [ Sector: ORB ] --
+-- Sector --
+AutofarmSectors.ORB = UserInterfaceCategories.Autofarm:Sector("ORB")
+
+-- Toggle --
+AutofarmSectors.ORB:Toggle("Farming Enabled", function(bool)
+	AutofarmSectionSettings.ORB.Enabled = bool
+end)
+
+-- Farming Method --
+AutofarmSectors.ORB:Dropdown("Farm Method", { "Wave", "Steady" }, function(Option)
+	AutofarmSectionSettings.ORB.FarmMethod = Option
+end)
+
+-- Catagory: Stats --
+local StatSector = {}
+
+-- [ Sector: Counter ] --
+-- Sector --
+StatSector.Counter = UserInterfaceCategories.Stats:Sector("Counter")
+
+-- Labels --
+local Labels = {}
+
+Labels.Vitality = StatSector.Counter:Label("Vitality")
+Labels.Healing = StatSector.Counter:Label("Healing")
+Labels.Strength = StatSector.Counter:Label("Strength")
+Labels.Energy = StatSector.Counter:Label("Energy")
+
+PlayerStats.Changed:Connect(function(Value)
+	local Table = HttpService:JSONDecode(Value)
+	Labels.Vitality:Refresh("Vitality - " .. tostring(Table.vitality))
+	Labels.Healing:Refresh("Healing - " .. tostring(Table.healing))
+	Labels.Strength:Refresh("Strength - " .. tostring(Table.strength))
+	Labels.Energy:Refresh("Energy - " .. tostring(Table.energy))
+end)
+
+PlayerStats.Value = HttpService:JSONEncode(
+	Remotes.GetStats:InvokeServer({ "upgrades", "perkPoints", "vitality", "energy", "strength", "healing", "money" })
+)
+
+-- [ Sector: Allocation ] --
+-- Sector --
+StatSector.StatAllocation = UserInterfaceCategories.Stats:Sector("Allocation")
+
+-- Target Stat --
+StatSector.StatAllocation:Dropdown("Stat Name", { "Vitality", "Healing", "Strength", "Energy" }, function(Option)
+	StatSectionSettings.StatAllocation.Stat = string.lower(Option)
+end)
+
+-- Increment --
+StatSector.StatAllocation:Slider(
+	"Allocation Increment",
+	{ min = 1, max = 25, suffix = " Point(s)", precise = true },
+	function(Value)
+		StatSectionSettings.StatAllocation.AllocateAmount = Value
+	end
+)
+
+-- Toggle --
+StatSector.StatAllocation:Toggle("Auto-Allocate", function(bool)
+	StatSectionSettings.StatAllocation.Enabled = bool
+end)
+
+-- Allocate once --
+StatSector.StatAllocation:Button("Allocate once", "Allocate", function()
+	for i = 1, StatSectionSettings.StatAllocation.AllocateAmount do
+		Remotes.UpgradeAbility:InvokeServer(StatSectionSettings.StatAllocation.Stat)
+	end
+end)
+
+-- [[ Catagory: PVP ]] --
+local PVPSector = {}
+
+-- [ Sector: Telekinesis ] --
+-- Sector --
+PVPSector.Telekinesis = UserInterfaceCategories.PVP:Sector("Telekinesis")
+
+-- Toggle AutoClean --
+PVPSector.Telekinesis:Toggle("AutoClean", function(bool)
+	PvpSectionSettings.Telekinesis.AutoClean = bool
+end)
+
+-- Toggle Telekinesis --
+PVPSector.Telekinesis:Toggle("Spam Telekinesis", function(bool)
+	PvpSectionSettings.Telekinesis.Spam = bool
+end)
+
+-- Keybind Kill Telekinesis --
+PVPSector.Telekinesis:Keybind("Kill Telekinesis", Enum.KeyCode.H, function()
+	local Character, HumanoidRootPart, BodyPosition = Telekinesis()
+	if not BodyPosition then
+		return
+	end
+	BodyPosition.Position = Vector3.new(999999999, -999999999, 0)
+end)
+
+-- Keybind Telekinesis --
+PVPSector.Telekinesis:Keybind("Perm Telekinesis", Enum.KeyCode.G, function()
+	local Character, HumanoidRootPart, BodyPosition = Telekinesis()
+	if not BodyPosition then
+		return
+	end
+	repeat
+		wait(0.2)
+		BodyPosition.Position = LocalPlayerHumanoidRootPart.Position + CurrentCamera.CFrame.LookVector.Unit * 12.5
+	until not BodyPosition
+end)
+
+-- [ Sector: Battle Assist ] --
+-- Sector --
+PVPSector.BattleAssist = UserInterfaceCategories.PVP:Sector("Battle Assist")
+
+-- Keybind Shield --
+PVPSector.BattleAssist:Keybind("Shield", Enum.KeyCode.V, function()
+	Remotes.ToggleBlocking:FireServer(true)
+end)
+
+-- Keybind Invisibility --
+PVPSector.BattleAssist:Keybind("Invisibility", Enum.KeyCode.C, function()
+	local StoredCF = LocalPlayerCharacter.PrimaryPart.CFrame
+	local Part = Instance.new("Part", workspace)
+	Part.Size = Vector3.new(5, 0, 5)
+	Part.Anchored = true
+	Part.CFrame = CFrame.new(Vector3.new(9999, 9999, 9999))
+	LocalPlayerCharacter.PrimaryPart.CFrame = Part.CFrame * CFrame.new(0, 3, 0)
+	spawn(function()
+		wait(3)
+		Part:Destroy()
+	end)
+	local Clone = LocalPlayerCharacter.LowerTorso.Root:Clone()
+	LocalPlayerCharacter.LowerTorso.Root:Destroy()
+	Clone.Parent = LocalPlayerCharacter.LowerTorso
+	wait(1)
+	LocalPlayerCharacter.PrimaryPart.CFrame = StoredCF
+
+	for i, v in pairs(LocalPlayerCharacter:GetDescendants()) do
+		if v:IsA("Part") then
+			game:GetService("RunService").RenderStepped:Wait()
+			v.Transparency = 0.5
+		end
+	end
+end)
+
+-- [ Sector: Autonomous ] --
+-- Sector --
+PVPSector.Autonomous = UserInterfaceCategories.PVP:Sector("Autonomous")
+
+-- Toggle Automatic Punching --
+PVPSector.Autonomous:Toggle("Auto Punch", function(bool)
+	PvpSectionSettings.Bot.AutoPunch = bool
+end)
+
+-- Set Punch Speed --
+PVPSector.Autonomous:Slider(
+	"Punch Speed",
+	{ min = 1, max = 60, suffix = " Heartbeats", precise = true },
+	function(Value)
+		PvpSectionSettings.Bot.AutoPunchSpeed = Value
+	end
+)
+
+-- [ Sector: Destruction ] --
+-- Sector --
+PVPSector.Destruction = UserInterfaceCategories.PVP:Sector("Destruction")
+
+-- Initiate Traps All --
+PVPSector.Destruction:Button("Trap All", "Activate", function()
+	for i, v in ipairs(PlayerService:GetPlayers()) do
+		local Character = v.Character
+		if Character then
+			local HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
+
+			LocalPlayerHumanoidRootPart.CFrame = HumanoidRootPart.CFrame * CFrame.new(0, 0, 1)
+
+			local Tick = 0
+			local Character, HRP, BodyPosition
+
+			repeat
+				wait()
+				Tick = Tick + 1
+				local Character, HRP, BodyPosition =
+					Telekinesis((HumanoidRootPart.Position - LocalPlayerHumanoidRootPart.Position).Unit)
+			until Character or Tick > 10
+		end
+	end
+end)
+
+-- Initiate Kill All --
+PVPSector.Destruction:Button("Kill All", "Activate", function()
+	for i, v in ipairs(PlayerService:GetPlayers()) do
+		local Character = v.Character
+		if Character then
+			local HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
+
+			LocalPlayerHumanoidRootPart.CFrame = HumanoidRootPart.CFrame * CFrame.new(0, 0, 1)
+
+			local Character, HRP, BodyPosition =
+				Telekinesis((HumanoidRootPart.Position - LocalPlayerHumanoidRootPart.Position).Unit)
+
+			if BodyPosition then
+				BodyPosition.P = math.huge
+				BodyPosition.Position = Vector3.new(999999999, -999999999, 0)
+			end
+		end
+	end
+end)
+
+-- [[ Catagory: Misc ]] --
+local MiscSector = {}
+-- [ Sector: Destruction ] --
+-- Sector --
+MiscSector.Trolling = UserInterfaceCategories.Misc:Sector("Trolling")
+
+-- Building Toggle --
+MiscSector.Trolling:Toggle("Building Collisions", function(bool)
+	for i, v in pairs(game:GetService("Workspace").City.Buildings:GetDescendants()) do
+		if v:IsA("BasePart") then
+			v.CanCollide = not bool
+		end
+	end
+end)
+
+-- // ACTIONS \\ --
+RunService.Heartbeat:Connect(function()
+	-- NPC Farm --
+	if AutofarmSectionSettings.NPC.Enabled == true then
+		Attack(AutofarmSectionSettings.NPC.NPC)
+	end
+
+	-- Orb Farm --
+	local OrbInstance = WorkspaceService.ExperienceOrbs:FindFirstChild("experienceOrb")
+	if AutofarmSectionSettings.ORB.Enabled == true and OrbInstance then
+		if AutofarmSectionSettings.ORB.FarmMethod == "Wave" then
+			for i, v in ipairs(WorkspaceService.ExperienceOrbs:GetChildren()) do
+				v.Position = LocalPlayerHumanoidRootPart.Position
+			end
+		else
+			WorkspaceService.ExperienceOrbs:FindFirstChild("experienceOrb").Position =
+				LocalPlayerHumanoidRootPart.Position
+		end
+	end
+
+	-- Stats --
+	if
+		StatSectionSettings.StatAllocation.Enabled == true
+		and HttpService:JSONDecode(PlayerStats.Value).perkPoints > 0
+	then
+		Remotes.UpgradeAbility:InvokeServer(StatSectionSettings.StatAllocation.Stat)
+		PlayerStats.Value = HttpService:JSONEncode(Remotes.GetStats:InvokeServer({
+			"upgrades",
+			"perkPoints",
+			"vitality",
+			"energy",
+			"strength",
+			"healing",
+			"money",
+		}))
+	end
+
+	-- Telekinesis --
+	if PvpSectionSettings.Telekinesis.Spam == true then
+		if TelekinesisCooldown > 15 then
+			TelekinesisCooldown = 0
+
+			local Character, HumanoidRootPart, BodyPosition = Telekinesis()
+			if not BodyPosition then
+				return
+			end
+			coroutine.wrap(function()
+				repeat
+					wait(0.2)
+					BodyPosition.Position = LocalPlayerHumanoidRootPart.Position
+						+ CurrentCamera.CFrame.LookVector.Unit * 15
+				until not BodyPosition
+			end)()
+		else
+			TelekinesisCooldown = TelekinesisCooldown + 1
+		end
+	end
+
+	if PvpSectionSettings.Telekinesis.Kill == true then
+		coroutine.wrap(function()
+			local Character, HumanoidRootPart, BodyPosition = Telekinesis()
+			if not BodyPosition then
+				return
+			end
+			BodyPosition.P = math.huge
+			BodyPosition.Position = Vector3.new(999999999, -999999999, 0)
+		end)()
+	end
+
+	if PvpSectionSettings.Telekinesis.AutoClean == true then
+		Remotes.ToggleTelekinesis:InvokeServer(false)
+	end
+
+	-- Attack Bot --
+	if PvpSectionSettings.Bot.AutoPunch == true then
+		PvpSectionSettings.Bot.AutoPunchCooldown = PvpSectionSettings.Bot.AutoPunchCooldown + 1
+		if PvpSectionSettings.Bot.AutoPunchCooldown > PvpSectionSettings.Bot.AutoPunchSpeed then
+			PvpSectionSettings.Bot.AutoPunchCooldown = 1
+			Remotes.Punch:FireServer(0, 0.1, 1)
+		end
+	end
+end)
