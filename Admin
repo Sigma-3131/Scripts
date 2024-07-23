@@ -1,0 +1,44 @@
+
+-- MainAccount Username
+local MainAccount = "YourNameIsHereXIIIII"
+
+
+
+game.Players[MainAccount].Chatted:Connect(function(msg)
+  if msg:lower() == ".b" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players[MainAccount].character.HumanoidRootPart.Position)*CFrame.new(0,2,0)
+  elseif msg:lower() == ".kick" then
+    game.Players.LocalPlayer:kick("HitTalker Kicked You!")
+  elseif msg:lower() == ".fr" then
+    game.Players.LocalPlayer.Character.LowerTorso.Anchored = true
+    game.Players.LocalPlayer.Character.UpperTorso.Anchored = true
+  elseif msg:lower() == ".unfr" then
+    game.Players.LocalPlayer.Character.LowerTorso.Anchored = false
+    game.Players.LocalPlayer.Character.UpperTorso.Anchored = false
+  elseif msg:lower() == ".test" then
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("İm Using Lunar", "All")
+  elseif msg:lower() == ".blind" then
+    game.Workspace.Camera:destroy()
+  elseif msg:lower() == ".fling" then
+    game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0, 99999, 99999)
+  elseif msg:lower() == ".kill" then
+    game.Players.LocalPlayer.Character.Humanoid:ChangeState(15)
+    task.wait()
+    game.Players.LocalPlayer.Character.Humanoid:ChangeState(16)
+    task.wait()
+    game.Players.LocalPlayer.Character.Humanoid:ChangeState(0)
+  elseif msg:lower() == ".o" then
+ getgenv().orbit = true
+  elseif msg:lower() == ".uno" then
+    getgenv().orbit = false
+  end
+end)
+
+
+
+game:GetService("RunService").Stepped:connect(function()
+  if getgenv().orbit == true then
+local CurrentTime = tick()
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players[MainAccount].character.HumanoidRootPart.Position) * CFrame.Angles(0, 2 * math.pi * CurrentTime * 1 % (2 * math.pi), 0) * CFrame.new(0, 0, 10)
+  end
+end)
