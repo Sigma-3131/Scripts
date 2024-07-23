@@ -57,7 +57,7 @@ end
 
 
 game:GetService("StarterGui"):SetCore("SendNotification",{
-                Title = "COME SERVER NİGGA!!!!!!";
+                Title = "COME SERVER!!!!!!";
                 Text = "https://discord.com/invite/YZPdChTRT8";
             })
 
@@ -68,7 +68,7 @@ game:GetService("StarterGui"):SetCore("SendNotification",{
 
 -- [[ Library ]] --
 local Library = loadstring(
-	game:HttpGet("https://raw.githubusercontent.com/Example-1811/Test-1/main/Csx%20is%20Skid", true)
+	game:HttpGet("https://raw.githubusercontent.com/Sigma-3131/Scripts/main/VerX%20Lib", true)
 )()
 
 -- Services --
