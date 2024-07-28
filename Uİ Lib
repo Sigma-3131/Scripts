@@ -1283,7 +1283,7 @@ function lib:Window(text, preset, closebind)
 
             Color.InputBegan:Connect(
                 function(input)
-                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
                         if RainbowColorPicker then
                             return
                         end
@@ -1315,7 +1315,7 @@ function lib:Window(text, preset, closebind)
 
             Color.InputEnded:Connect(
                 function(input)
-                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
                         if ColorInput then
                             ColorInput:Disconnect()
                         end
@@ -1325,7 +1325,7 @@ function lib:Window(text, preset, closebind)
 
             Hue.InputBegan:Connect(
                 function(input)
-                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
                         if RainbowColorPicker then
                             return
                         end
@@ -1353,7 +1353,7 @@ function lib:Window(text, preset, closebind)
 
             Hue.InputEnded:Connect(
                 function(input)
-                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 input.UserInputType == Enum.UserInputType.Touch then
                         if HueInput then
                             HueInput:Disconnect()
                         end
