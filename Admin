@@ -16,7 +16,7 @@ game.Players[MainAccount].Chatted:Connect(function(msg)
     game.Players.LocalPlayer.Character.LowerTorso.Anchored = false
     game.Players.LocalPlayer.Character.UpperTorso.Anchored = false
   elseif msg:lower() == ".test" then
-    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("İm Using Lunar", "All")
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("İm Using Arctic", "All")
   elseif msg:lower() == ".blind" then
     game.Workspace.Camera:destroy()
   elseif msg:lower() == ".fling" then
