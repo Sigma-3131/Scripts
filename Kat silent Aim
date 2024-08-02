@@ -1,0 +1,626 @@
+--[[
+This script is made by exoticeot and sinister sadly
+me exoticeot forgot how to script same with sinister 
+so this is the last project we made.
+]]
+
+
+ 
+ 
+-- Gui to Lua
+-- Version: 3.2
+ 
+-- Instances:
+ 
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextButton = Instance.new("TextButton")
+local ToggleFame = Instance.new("Frame")
+local KatMain = Instance.new("Frame")
+local Frame3 = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local TextButton2 = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local Frame4 = Instance.new("Frame")
+local TextButton3 = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local TextButton4 = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
+local Frame5 = Instance.new("Frame")
+local TextButton5 = Instance.new("TextButton")
+local UICorner_5 = Instance.new("UICorner")
+local TextLabel = Instance.new("TextLabel")
+local TextLabel_2 = Instance.new("TextLabel")
+local TextLabel_3 = Instance.new("TextLabel")
+local TextLabel_4 = Instance.new("TextLabel")
+ 
+--Properties:
+ 
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ 
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Frame.Position = UDim2.new(0.172077924, 0, 0.150501683, 0)
+Frame.Size = UDim2.new(0, 248, 0, 27)
+ 
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BackgroundTransparency = 1.000
+TextButton.Position = UDim2.new(0.879032254, 0, -0.296296299, 0)
+TextButton.Size = UDim2.new(0, 30, 0, 43)
+TextButton.Font = Enum.Font.SourceSansBold
+TextButton.Text = "+"
+TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.TextScaled = true
+TextButton.TextSize = 14.000
+TextButton.TextWrapped = true
+ 
+ToggleFame.Name = "ToggleFame"
+ToggleFame.Parent = Frame
+ToggleFame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ToggleFame.BackgroundTransparency = 1.000
+ToggleFame.Position = UDim2.new(3.17741919, 0, -2.40740776, 0)
+ToggleFame.Size = UDim2.new(0, 100, 0, 100)
+ 
+KatMain.Name = "KatMain"
+KatMain.Parent = Frame
+KatMain.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+KatMain.BorderSizePixel = 0
+KatMain.Position = UDim2.new(0, 0, 0.999999702, 0)
+KatMain.Size = UDim2.new(0, 248, 0, 2)
+ 
+Frame3.Name = "Frame3"
+Frame3.Parent = Frame
+Frame3.BackgroundColor3 = Color3.fromRGB(24, 203, 11)
+Frame3.BorderSizePixel = 0
+Frame3.Position = UDim2.new(0, 0, 0.98111105, 0)
+Frame3.Size = UDim2.new(0, 248, 0, 3)
+Frame3.Visible = false
+ 
+UICorner.CornerRadius = UDim.new(0, 2)
+UICorner.Parent = Frame
+ 
+TextButton2.Name = "TextButton2"
+TextButton2.Parent = Frame
+TextButton2.BackgroundColor3 = Color3.fromRGB(24, 203, 11)
+TextButton2.Position = UDim2.new(0.0483870953, 0, 2.33333302, 0)
+TextButton2.Size = UDim2.new(0, 224, 0, 30)
+TextButton2.Font = Enum.Font.SourceSansBold
+TextButton2.Text = "Silent Aim"
+TextButton2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton2.TextScaled = true
+TextButton2.TextSize = 14.000
+TextButton2.TextWrapped = true
+TextButton2.Visible = false
+ 
+UICorner_2.CornerRadius = UDim.new(0, 2)
+UICorner_2.Parent = TextButton2
+ 
+Frame4.Name = "Frame4"
+Frame4.Parent = Frame
+Frame4.BackgroundColor3 = Color3.fromRGB(24, 203, 11)
+Frame4.BorderSizePixel = 0
+Frame4.Position = UDim2.new(0, 0, 4.05518532, 0)
+Frame4.Size = UDim2.new(0, 248, 0, 3)
+Frame4.Visible = false
+ 
+ 
+TextButton3.Name = "TextButton3"
+TextButton3.Parent = Frame
+TextButton3.BackgroundColor3 = Color3.fromRGB(24, 203, 11)
+TextButton3.Position = UDim2.new(0.0483870953, 0, 5.14814758, 0)
+TextButton3.Size = UDim2.new(0, 224, 0, 30)
+TextButton3.Font = Enum.Font.SourceSansBold
+TextButton3.Text = "Esp"
+TextButton3.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton3.TextScaled = true
+TextButton3.TextSize = 14.000
+TextButton3.TextWrapped = true
+TextButton3.Visible = false
+ 
+UICorner_3.CornerRadius = UDim.new(0, 2)
+UICorner_3.Parent = TextButton3
+ 
+TextButton4.Name = "TextButton4"
+TextButton4.Parent = Frame
+TextButton4.BackgroundColor3 = Color3.fromRGB(24, 203, 11)
+TextButton4.Position = UDim2.new(0.0483870953, 0, 6.48148108, 0)
+TextButton4.Size = UDim2.new(0, 224, 0, 30)
+TextButton4.Font = Enum.Font.SourceSansBold
+TextButton4.Text = "Tracers"
+TextButton4.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton4.TextScaled = true
+TextButton4.TextSize = 14.000
+TextButton4.TextWrapped = true
+TextButton4.Visible = false
+ 
+UICorner_4.CornerRadius = UDim.new(0, 2)
+UICorner_4.Parent = TextButton4
+ 
+Frame5.Name = "Frame5"
+Frame5.Parent = Frame
+Frame5.BackgroundColor3 = Color3.fromRGB(24, 203, 11)
+Frame5.BorderSizePixel = 0
+Frame5.Position = UDim2.new(0, 0, 8.09222221, 0)
+Frame5.Size = UDim2.new(0, 248, 0, 3)
+Frame5.Visible = false
+ 
+TextButton5.Name = "TextButton5"
+TextButton5.Parent = Frame
+TextButton5.BackgroundColor3 = Color3.fromRGB(24, 203, 11)
+TextButton5.Position = UDim2.new(0.0483870953, 0, 9.48148155, 0)
+TextButton5.Size = UDim2.new(0, 224, 0, 30)
+TextButton5.Font = Enum.Font.SourceSansBold
+TextButton5.Text = "https://discord.com/invite/ZHcYBenf"
+TextButton5.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton5.TextScaled = true
+TextButton5.TextSize = 14.000
+TextButton5.TextWrapped = true
+TextButton5.Visible = false
+ 
+UICorner_5.CornerRadius = UDim.new(0, 2)
+UICorner_5.Parent = TextButton5
+ 
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Position = UDim2.new(0.0483870953, 0, 0.111111112, 0)
+TextLabel.Size = UDim2.new(0, 218, 0, 20)
+TextLabel.Font = Enum.Font.SourceSansBold
+TextLabel.Text = "Kat | Sinister Gui"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+ 
+TextLabel_2.Parent = Frame
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.Position = UDim2.new(0.0483870953, 0, 1.29629636, 0)
+TextLabel_2.Size = UDim2.new(0, 218, 0, 20)
+TextLabel_2.Font = Enum.Font.SourceSansBold
+TextLabel_2.Text = "Main"
+TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.TextScaled = true
+TextLabel_2.TextSize = 14.000
+TextLabel_2.TextWrapped = true
+TextLabel_2.Visible = false
+ 
+TextLabel_3.Parent = Frame
+TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.BackgroundTransparency = 1.000
+TextLabel_3.Position = UDim2.new(0.0483870953, 0, 4.14814854, 0)
+TextLabel_3.Size = UDim2.new(0, 218, 0, 20)
+TextLabel_3.Font = Enum.Font.SourceSansBold
+TextLabel_3.Text = "Visuals"
+TextLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.TextScaled = true
+TextLabel_3.TextSize = 14.000
+TextLabel_3.TextWrapped = true
+TextLabel_3.Visible = false
+ 
+TextLabel_4.Parent = Frame
+TextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_4.BackgroundTransparency = 1.000
+TextLabel_4.Position = UDim2.new(0.0483870953, 0, 8.48148155, 0)
+TextLabel_4.Size = UDim2.new(0, 218, 0, 20)
+TextLabel_4.Font = Enum.Font.SourceSansBold
+TextLabel_4.Text = "$hit Talker Cracked this"
+TextLabel_4.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_4.TextScaled = true
+TextLabel_4.TextSize = 14.000
+TextLabel_4.TextWrapped = true
+TextLabel_4.Visible = false
+ 
+TextButton.MouseButton1Down:Connect(function()
+    if ToggleFame.BackgroundTransparency == 1 then
+        TextButton.Text = "-"
+        ToggleFame.BackgroundTransparency = 2
+ 
+        KatMain:TweenSize(UDim2.new(0, 248,0, 277))
+        KatMain.Visible = true
+        wait(1)
+ 
+        Frame3.Visible = true
+        Frame4.Visible = true
+        Frame5.Visible = true
+        TextButton2.Visible =true
+        TextButton3.Visible = true
+        TextButton4.Visible = true
+        TextButton5.Visible = true
+        TextLabel_2.Visible = true
+        TextLabel_3.Visible = true
+        TextLabel_4.Visible = true
+        
+ 
+ 
+    else
+        TextButton.Text = "+"
+        Frame3.Visible = false
+        Frame4.Visible = false
+        Frame5.Visible = false
+        TextButton2.Visible = false
+        TextButton3.Visible = false
+        TextButton4.Visible = false
+        TextButton5.Visible = false
+        TextLabel_2.Visible = false
+        TextLabel_3.Visible = false
+        TextLabel_4.Visible = false
+ 
+        ToggleFame.BackgroundTransparency = 1
+        KatMain:TweenSize(UDim2.new(0, 248,0, 2))
+        wait(1)
+        KatMain.Visible = false
+    end
+end)
+ 
+TextButton2.MouseButton1Down:Connect(function()
+    local localPlayer = game:GetService("Players").LocalPlayer
+    local currentCamera = game:GetService("Workspace").CurrentCamera
+    local mouse = localPlayer:GetMouse()
+ 
+    local function getClosestPlayerToCursor(x, y)
+        local closestPlayer = nil
+        local shortestDistance = math.huge
+ 
+        for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+            if v ~= localPlayer and v.Character and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health ~= 0 and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Torso") then
+                local pos = currentCamera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
+                local magnitude = (Vector2.new(pos.X, pos.Y) - Vector2.new(x, y)).magnitude
+ 
+                if magnitude < shortestDistance then
+                    closestPlayer = v
+                    shortestDistance = magnitude
+                end
+            end
+        end
+ 
+        return closestPlayer
+    end
+ 
+    local mt = getrawmetatable(game)
+    local oldIndex = mt.__index
+    if setreadonly then setreadonly(mt, false) else make_writeable(mt, true) end
+    local newClose = newcclosure or function(f) return f end
+ 
+    mt.__index = newClose(function(t, k)
+        if not checkcaller() and t == mouse and tostring(k) == "X" and string.find(getfenv(2).script.Name, "Client") and getClosestPlayerToCursor() then
+            local closest = getClosestPlayerToCursor(oldIndex(t, k), oldIndex(t, "Y")).Character.Head
+            local pos = currentCamera:WorldToScreenPoint(closest.Position)
+            return pos.X
+        end
+        if not checkcaller() and t == mouse and tostring(k) == "Y" and string.find(getfenv(2).script.Name, "Client") and getClosestPlayerToCursor() then
+            local closest = getClosestPlayerToCursor(oldIndex(t, "X"), oldIndex(t, k)).Character.Head
+            local pos = currentCamera:WorldToScreenPoint(closest.Position)
+            return pos.Y
+        end
+        if t == mouse and tostring(k) == "Hit" and string.find(getfenv(2).script.Name, "Client") and getClosestPlayerToCursor() then
+            return getClosestPlayerToCursor(mouse.X, mouse.Y).Character.Head.CFrame
+        end
+ 
+        return oldIndex(t, k)
+    end)
+ 
+    if setreadonly then setreadonly(mt, true) else make_writeable(mt, false) end
+end)
+ 
+TextButton3.MouseButton1Down:Connect(function()
+    local plr = game.Players.LocalPlayer
+    local camera = game.Workspace.CurrentCamera
+ 
+    for i, v in pairs(game.Players:GetChildren()) do
+        local Top = Drawing.new("Line")
+        Top.Visible = false
+        Top.From = Vector2.new(0, 0)
+        Top.To = Vector2.new(200, 200)
+        Top.Color = Color3.fromRGB(255, 255, 255)
+        Top.Thickness = 2
+        Top.Transparency = 1
+ 
+        local Bottom = Drawing.new("Line")
+        Bottom.Visible = false
+        Bottom.From = Vector2.new(0, 0)
+        Bottom.To = Vector2.new(200, 200)
+        Bottom.Color = Color3.fromRGB(255, 255, 255)
+        Bottom.Thickness = 2
+        Bottom.Transparency = 1
+ 
+        local Left = Drawing.new("Line")
+        Left.Visible = false
+        Left.From = Vector2.new(0, 0)
+        Left.To = Vector2.new(200, 200)
+        Left.Color = Color3.fromRGB(255, 255, 255)
+        Left.Thickness = 2
+        Left.Transparency = 1
+ 
+        local Right = Drawing.new("Line")
+        Right.Visible = false
+        Right.From = Vector2.new(0, 0)
+        Right.To = Vector2.new(200, 200)
+        Right.Color = Color3.fromRGB(255, 255, 255)
+        Right.Thickness = 2
+        Right.Transparency = 1
+ 
+        function ESP()
+            local connection
+            connection = game:GetService("RunService").RenderStepped:Connect(function()
+                if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v.Name ~= plr.Name  and v.Character.Humanoid.Health > 0 then 
+                    local ScreenPos, OnScreen = camera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
+                    if OnScreen then
+                        local Scale = v.Character.Head.Size.Y/2
+                        local Size = Vector3.new(2, 3, 0) * (Scale * 2)
+                        local humpos = camera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
+                        local TL = camera:WorldToViewportPoint((v.Character.HumanoidRootPart.CFrame * CFrame.new(Size.X, Size.Y, 0)).p)
+                        local TR = camera:WorldToViewportPoint((v.Character.HumanoidRootPart.CFrame * CFrame.new(-Size.X, Size.Y, 0)).p)
+                        local BL = camera:WorldToViewportPoint((v.Character.HumanoidRootPart.CFrame * CFrame.new(Size.X, -Size.Y, 0)).p)
+                        local BR = camera:WorldToViewportPoint((v.Character.HumanoidRootPart.CFrame * CFrame.new(-Size.X, -Size.Y, 0)).p)
+ 
+                        Top.From = Vector2.new(TL.X, TL.Y)
+                        Top.To = Vector2.new(TR.X, TR.Y)
+ 
+                        Left.From = Vector2.new(TL.X, TL.Y)
+                        Left.To = Vector2.new(BL.X, BL.Y)
+ 
+                        Right.From = Vector2.new(TR.X, TR.Y)
+                        Right.To = Vector2.new(BR.X, BR.Y)
+ 
+                        Bottom.From = Vector2.new(BL.X, BL.Y)
+                        Bottom.To = Vector2.new(BR.X, BR.Y)
+ 
+                        if v.TeamColor == plr.TeamColor then
+                            Top.Color = Color3.fromRGB(255, 255, 255)
+                            Left.Color = Color3.fromRGB(255, 255, 255)
+                            Bottom.Color = Color3.fromRGB(255, 255, 255)
+                            Right.Color = Color3.fromRGB(255, 255, 255)
+                        else 
+                            Top.Color = Color3.fromRGB(255, 255, 255)
+                            Left.Color = Color3.fromRGB(255, 255, 255)
+                            Bottom.Color = Color3.fromRGB(255, 255, 255)
+                            Right.Color = Color3.fromRGB(255, 255, 255)
+                        end
+ 
+                        Top.Visible = true
+                        Left.Visible = true
+                        Bottom.Visible = true
+                        Right.Visible = true
+                    else 
+                        Top.Visible = false
+                        Left.Visible = false
+                        Bottom.Visible = false
+                        Right.Visible = false
+                    end
+                else 
+                    Top.Visible = false
+                    Left.Visible = false
+                    Bottom.Visible = false
+                    Right.Visible = false
+                    if game.Players:FindFirstChild(v.Name) == nil then
+                        connection:Disconnect()
+                    end
+                end
+            end)
+        end
+        coroutine.wrap(ESP)()
+    end
+ 
+    game.Players.PlayerAdded:Connect(function(newplr) --Parameter gets the new player that has been added
+        local Top = Drawing.new("Line")
+        Top.Visible = false
+        Top.From = Vector2.new(0, 0)
+        Top.To = Vector2.new(200, 200)
+        Top.Color = Color3.fromRGB(255, 255, 255)
+        Top.Thickness = 2
+        Top.Transparency = 1
+ 
+        local Bottom = Drawing.new("Line")
+        Bottom.Visible = false
+        Bottom.From = Vector2.new(0, 0)
+        Bottom.To = Vector2.new(200, 200)
+        Bottom.Color = Color3.fromRGB(255, 255, 255)
+        Bottom.Thickness = 2
+        Bottom.Transparency = 1
+ 
+        local Left = Drawing.new("Line")
+        Left.Visible = false
+        Left.From = Vector2.new(0, 0)
+        Left.To = Vector2.new(200, 200)
+        Left.Color = Color3.fromRGB(255, 255, 255)
+        Left.Thickness = 2
+        Left.Transparency = 1
+ 
+        local Right = Drawing.new("Line")
+        Right.Visible = false
+        Right.From = Vector2.new(0, 0)
+        Right.To = Vector2.new(200, 200)
+        Right.Color = Color3.fromRGB(255, 255, 255)
+        Right.Thickness = 2
+        Right.Transparency = 1
+ 
+        function ESP()
+            local connection
+            connection = game:GetService("RunService").RenderStepped:Connect(function()
+                if newplr.Character ~= nil and newplr.Character:FindFirstChild("HumanoidRootPart") ~= nil and newplr.Name ~= plr.Name  and newplr.Character.Humanoid.Health > 0 then
+                    local ScreenPos, OnScreen = camera:WorldToViewportPoint(newplr.Character.HumanoidRootPart.Position)
+                    if OnScreen then
+                        local Scale = newplr.Character.Head.Size.Y/2
+                        local Size = Vector3.new(2, 3, 0) * (Scale * 2)
+                        local humpos = camera:WorldToViewportPoint(newplr.Character.HumanoidRootPart.Position)
+                        local TL = camera:WorldToViewportPoint((newplr.Character.HumanoidRootPart.CFrame * CFrame.new(Size.X, Size.Y, 0)).p)
+                        local TR = camera:WorldToViewportPoint((newplr.Character.HumanoidRootPart.CFrame * CFrame.new(-Size.X, Size.Y, 0)).p)
+                        local BL = camera:WorldToViewportPoint((newplr.Character.HumanoidRootPart.CFrame * CFrame.new(Size.X, -Size.Y, 0)).p)
+                        local BR = camera:WorldToViewportPoint((newplr.Character.HumanoidRootPart.CFrame * CFrame.new(-Size.X, -Size.Y, 0)).p)
+ 
+                        Top.From = Vector2.new(TL.X, TL.Y)
+                        Top.To = Vector2.new(TR.X, TR.Y)
+ 
+                        Left.From = Vector2.new(TL.X, TL.Y)
+                        Left.To = Vector2.new(BL.X, BL.Y)
+ 
+                        Right.From = Vector2.new(TR.X, TR.Y)
+                        Right.To = Vector2.new(BR.X, BR.Y)
+ 
+                        Bottom.From = Vector2.new(BL.X, BL.Y)
+                        Bottom.To = Vector2.new(BR.X, BR.Y)
+ 
+                        if newplr.TeamColor == plr.TeamColor then
+                            Top.Color = Color3.fromRGB(255, 255, 255)
+                            Left.Color = Color3.fromRGB(255, 255, 255)
+                            Bottom.Color = Color3.fromRGB(255, 255, 255)
+                            Right.Color = Color3.fromRGB(255, 255, 255)
+                        else 
+                            Top.Color = Color3.fromRGB(255, 255, 255)
+                            Left.Color = Color3.fromRGB(255, 255, 255)
+                            Bottom.Color = Color3.fromRGB(255, 255, 255)
+                            Right.Color = Color3.fromRGB(255, 255, 255)
+                        end
+ 
+                        Top.Visible = true
+                        Left.Visible = true
+                        Bottom.Visible = true
+                        Right.Visible = true
+                    else 
+                        Top.Visible = false
+                        Left.Visible = false
+                        Bottom.Visible = false
+                        Right.Visible = false
+                    end
+                else 
+                    Top.Visible = false
+                    Left.Visible = false
+                    Bottom.Visible = false
+                    Right.Visible = false
+                    if game.Players:FindFirstChild(newplr.Name) == nil then
+                        connection:Disconnect()
+                    end
+                end
+            end)
+        end
+ 
+    end)
+ 
+end)
+ 
+TextButton4.MouseButton1Down:Connect(function()
+    local plr = game.Players.LocalPlayer
+    local camera = game.Workspace.CurrentCamera
+ 
+    for i, v in pairs(game.Players:GetChildren()) do
+        local TEXT = Drawing.new("Text")
+        TEXT.Visible = false
+        TEXT.Transparency = 1
+        TEXT.Color = Color3.fromRGB(255, 255, 255)
+        TEXT.Text = v.Name
+        TEXT.Size = 15
+ 
+        TEXT.Position = Vector2.new(200,200)
+ 
+        local TRACER = Drawing.new("Line")
+        TRACER.Visible = false
+        TRACER.From = Vector2.new(0, 0)
+        TRACER.To = Vector2.new(200, 200)
+        TRACER.Color = Color3.fromRGB(255, 255, 255)
+        TRACER.Thickness = 2
+        TRACER.Transparency = 1
+ 
+        function ESP()
+            game:GetService("RunService").RenderStepped:Connect(function()
+                if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v.Name ~= plr.Name  and v.Character.Humanoid.Health > 0 then 
+                    local ScreenPos, OnScreen = camera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
+                    if OnScreen then
+                        TRACER.From = Vector2.new(camera.ViewportSize.X/2, camera.ViewportSize.Y) -- Gets bottom center of screen for tracers
+                        TRACER.To = Vector2.new(ScreenPos.X, ScreenPos.Y)
+                        TEXT.Position = Vector2.new(ScreenPos.X- 20, ScreenPos.Y)
+ 
+                        if v.TeamColor == plr.TeamColor then
+                            TRACER.Color = Color3.fromRGB(255, 255, 255)
+                            TEXT.Color = Color3.fromRGB(255, 255, 255)
+                        else 
+                            TRACER.Color = Color3.fromRGB(255, 255, 255)
+                            TEXT.Color = Color3.fromRGB(255, 255, 255)
+                        end
+ 
+                        TRACER.Visible = true
+                        TEXT.Visible = true
+                    else 
+                        TRACER.Visible = false
+                        TEXT.Visible = false
+                    end
+                else 
+                    TRACER.Visible = false
+                    TEXT.Visible = false
+                    if game.Players:FindFirstChild(v.Name) then
+                    else
+                        Disconnect()
+                    end
+                end
+            end)
+        end
+        coroutine.wrap(ESP)()
+    end
+ 
+    game.Players.PlayerAdded:Connect(function(newplr) --Parameter gets the new player that has been added
+        local TEXT = Drawing.new("Text")
+        TEXT.Visible = false
+        TEXT.Transparency = 1
+        TEXT.Color = Color3.fromRGB(255, 255, 255)
+        TEXT.Text = newplr.Name
+        TEXT.Size = 15
+        TEXT.Position = Vector2.new(200,200)
+ 
+        local TRACER = Drawing.new("Line")
+        TRACER.Visible = false
+        TRACER.From = Vector2.new(0, 0)
+        TRACER.To = Vector2.new(200, 200)
+        TRACER.Color = Color3.fromRGB(255, 255, 255)
+        TRACER.Thickness = 2
+        TRACER.Transparency = 1
+ 
+        function ESP()
+            game:GetService("RunService").RenderStepped:Connect(function()
+                if newplr.Character ~= nil and newplr.Character:FindFirstChild("HumanoidRootPart") ~= nil and newplr.Name ~= plr.Name  and newplr.Character.Humanoid.Health > 0 then
+                    local ScreenPos, OnScreen = camera:WorldToViewportPoint(newplr.Character.HumanoidRootPart.Position)
+                    if OnScreen then
+                        TRACER.From = Vector2.new(camera.ViewportSize.X/2, camera.ViewportSize.Y) -- Gets bottom center of screen for tracers
+                        TRACER.To = Vector2.new(ScreenPos.X, ScreenPos.Y)
+                        TEXT.Position = Vector2.new(ScreenPos.X - 20, ScreenPos.Y)
+ 
+                        if newplr.TeamColor == plr.TeamColor then
+                            TRACER.Color = Color3.fromRGB(255, 255, 255)
+                            TEXT.Color = Color3.fromRGB(255, 255, 255)
+                        else 
+                            TRACER.Color = Color3.fromRGB(255, 255, 255)
+                            TEXT.Color = Color3.fromRGB(255, 255, 255)
+                        end
+ 
+                        TRACER.Visible = true
+                        TEXT.Visible = true
+                    else 
+                        TRACER.Visible = false
+                        TEXT.Visible = false
+                    end
+                else 
+                    TRACER.Visible = false
+                    TEXT.Visible = false
+                    if game.Players:FindFirstChild(newplr.Name) then
+                    else
+                        Disconnect()
+                    end
+                end
+            end)
+        end
+ 
+    end)
+ 
+end)
+ 
+ 
+TextButton5.MouseButton1Down:Connect(function()
+    print("ahhh")
+end)
+ 
+ 
+Frame.Active = true
+Frame.Draggable = true
+KatMain.Active = false
+KatMain.Draggable = false
