@@ -1,5 +1,5 @@
 --[[
-This script is skidded by $hit Talker
+This script is Cracked by $hit Talker
 ]]
 
 
@@ -614,7 +614,11 @@ end)
  
  
 TextButton5.MouseButton1Down:Connect(function()
-    print("ahhh")
+    if game.Players.LocalPlayer.PlayerGui.HI.Enabled == true then
+   game.Players.LocalPlayer.PlayerGui.HI.Enabled = false
+elseif  game.Players.LocalPlayer.PlayerGui.HI.Enabled == false then
+   game.Players.LocalPlayer.PlayerGui.HI.Enabled = true
+end
 end)
  
  
