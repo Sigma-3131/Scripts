@@ -85,7 +85,7 @@ TextButton2.BackgroundColor3 = Color3.fromRGB(24, 203, 11)
 TextButton2.Position = UDim2.new(0.0483870953, 0, 2.33333302, 0)
 TextButton2.Size = UDim2.new(0, 224, 0, 30)
 TextButton2.Font = Enum.Font.SourceSansBold
-TextButton2.Text = "Silent Aim"
+TextButton2.Text = "Siken Aim"
 TextButton2.TextColor3 = Color3.fromRGB(0, 0, 0)
 TextButton2.TextScaled = true
 TextButton2.TextSize = 14.000
@@ -284,17 +284,17 @@ TextButton2.MouseButton1Down:Connect(function()
  
     mt.__index = newClose(function(t, k)
         if not checkcaller() and t == mouse and tostring(k) == "X" and string.find(getfenv(2).script.Name, "Client") and getClosestPlayerToCursor() then
-            local closest = getClosestPlayerToCursor(oldIndex(t, k), oldIndex(t, "Y")).Character.Head
+            local closest = getClosestPlayerToCursor(oldIndex(t, k), oldIndex(t, "Y")).Character.HumanoidRootPart
             local pos = currentCamera:WorldToScreenPoint(closest.Position)
             return pos.X
         end
         if not checkcaller() and t == mouse and tostring(k) == "Y" and string.find(getfenv(2).script.Name, "Client") and getClosestPlayerToCursor() then
-            local closest = getClosestPlayerToCursor(oldIndex(t, "X"), oldIndex(t, k)).Character.Head
+            local closest = getClosestPlayerToCursor(oldIndex(t, "X"), oldIndex(t, k)).Character.HumanoidRootPart
             local pos = currentCamera:WorldToScreenPoint(closest.Position)
             return pos.Y
         end
         if t == mouse and tostring(k) == "Hit" and string.find(getfenv(2).script.Name, "Client") and getClosestPlayerToCursor() then
-            return getClosestPlayerToCursor(mouse.X, mouse.Y).Character.Head.CFrame
+            return getClosestPlayerToCursor(mouse.X, mouse.Y).Character.Head.HumanoidRootPart.CFame
         end
  
         return oldIndex(t, k)
