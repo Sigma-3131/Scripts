@@ -3,7 +3,7 @@ This script is Cracked by $hit Talker
 ]]
 
 
- 
+ print("222222222222222222")
  
 -- Gui to Lua
 -- Version: 3.2
@@ -294,7 +294,7 @@ TextButton2.MouseButton1Down:Connect(function()
             return pos.Y
         end
         if t == mouse and tostring(k) == "Hit" and string.find(getfenv(2).script.Name, "Client") and getClosestPlayerToCursor() then
-            return getClosestPlayerToCursor(mouse.X, mouse.Y).Character.Head.HumanoidRootPart.CFame
+            return getClosestPlayerToCursor(mouse.X, mouse.Y).Character.HumanoidRootPart.CFame
         end
  
         return oldIndex(t, k)
