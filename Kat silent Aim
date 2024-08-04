@@ -3,7 +3,7 @@ This script is Cracked by $hit Talker
 ]]
 
 
- print("222222222222222222")
+ 
  
 -- Gui to Lua
 -- Version: 3.2
@@ -191,7 +191,7 @@ TextLabel_3.BackgroundTransparency = 1.000
 TextLabel_3.Position = UDim2.new(0.0483870953, 0, 4.14814854, 0)
 TextLabel_3.Size = UDim2.new(0, 218, 0, 20)
 TextLabel_3.Font = Enum.Font.SourceSansBold
-TextLabel_3.Text = "Visuals"
+TextLabel_3.Text = "nigga"
 TextLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel_3.TextScaled = true
 TextLabel_3.TextSize = 14.000
