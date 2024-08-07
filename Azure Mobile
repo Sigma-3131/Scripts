@@ -1,12 +1,4 @@
 
--- Azure V4 Mobile Working Version
--- Bir Turk Tarafindan Yapıldı
--- modified by $hit Talker
-
-
-
-
-
     
 if (not LPH_OBFUSCATED) then
     LPH_NO_VIRTUALIZE = function(...) return (...) end;
@@ -75,11 +67,6 @@ end
             SavedCFrame = nil,
             NetworkPreviousTick = tick(),
             NetworkShouldSleep = false,
-            FFlags = {
-                ["DataSenderMaxJoinBandwidthBps"] = getfflag("DataSenderMaxJoinBandwidthBps"),
-                ["PhysicsSenderMaxBandwidthBps"] = getfflag("PhysicsSenderMaxBandwidthBps"),
-                ["S2PhysicsSenderRate"] = getfflag("S2PhysicsSenderRate")
-            },
             OriginalVelocity = {},
             RotationAngle = 0
         },
@@ -132,12 +119,12 @@ end
                 RefreshRate = 100
             },
             Fov = {
-                Enabled = false,
+                Enabled = true,
                 Visualize = {
                     Enabled = false,
                     Color = Color3.new(1, 1, 1)
                 },
-                Radius = 80
+                Radius = 180
             },
             Visuals = {
                 Enabled = false,
@@ -909,6 +896,8 @@ end
                         FakeCFrame = FakeCFrame * CFrame.new(9e9, math.huge, 0/0)
                     elseif Type == "Random Target" and Script.Locals.IsTargetting and Script.Locals.Target and Settings.Combat.Enabled then
                         FakeCFrame = CFrame.new(Script.Locals.Target.Character.HumanoidRootPart.Position + Vector3.new(math.random(-Settings.AntiAim.CSync.RandomDistance, Settings.AntiAim.CSync.RandomDistance), math.random(-Settings.AntiAim.CSync.RandomDistance, Settings.AntiAim.CSync.RandomDistance), math.random(-Settings.AntiAim.CSync.RandomDistance, Settings.AntiAim.CSync.RandomDistance))) * CFrame.Angles(math.rad(math.random(0, 360)), math.rad(math.random(0, 360)), math.rad(math.random(0, 360)))
+                      elseif Type == "Test" and Script.Locals.IsTargetting and Script.Locals.Target and Settings.Combat.Enabled then
+                        FakeCFrame = CFrame.new(Script.Locals.Target.Character.HumanoidRootPart.Position + Vector3.new(math.random(-10, 10), 0, math.random(-15, 15))) * CFrame.Angles(math.rad(math.random(-180, 20)), math.rad(math.random(-10, 500)), math.rad(math.random(0, 100)))
                     elseif Type == "BoxRandom" and Script.Locals.IsTargetting and Script.Locals.Target and Settings.Combat.Enabled then
                       FakeCFrame = CFrame.new(Script.Locals.Target.Character.HumanoidRootPart.Position + Vector3.new(math.random(-Settings.AntiAim.CSync.RandomDistance, Settings.AntiAim.CSync.RandomDistance), math.random(-Settings.AntiAim.CSync.RandomDistance, Settings.AntiAim.CSync.RandomDistance), math.random(-Settings.AntiAim.CSync.RandomDistance, Settings.AntiAim.CSync.RandomDistance))) * CFrame.Angles(0, 0, 0)
                     end
@@ -1142,15 +1131,14 @@ end
     do
         --// Hitsounds
         Hitsounds = {
-            ["bell.wav"] = "https://github.com/nyulachan/nyula/blob/main/Sounds/bell.wav?raw=true",
-            ["bepis.wav"] = "https://github.com/nyulachan/nyula/blob/main/Sounds/bepis.wav?raw=true",
-            ["bubble.wav"] = "https://github.com/nyulachan/nyula/blob/main/Sounds/bubble.wav?raw=true",
-            ["cock.wav"] = "https://github.com/nyulachan/nyula/blob/main/Sounds/cock.wav?raw=true",
-            ["cod.wav"] = "https://github.com/nyulachan/nyula/blob/main/Sounds/cod.wav?raw=true",
-            ["fatality.wav"] = "https://github.com/nyulachan/nyula/blob/main/Sounds/fatality.wav?raw=true",
-            ["phonk.wav"] = "https://github.com/nyulachan/nyula/blob/main/Sounds/phonk.wav?raw=true",
-            ["sparkle.wav"] = "https://github.com/nyulachan/nyula/blob/main/Sounds/sparkle.wav?raw=true",
-            ["rust headshot.wav"] = "https://raw.githubusercontent.com/linemaster2/hitsounds/main/eaolwpzhgsba.wav"
+            ["bell.wav"] = "https://github.com/Sigma-3131/HitSounds/raw/main/bell.wav",
+            ["bepis.wav"] = "https://github.com/Sigma-3131/HitSounds/raw/main/bepis.wav",
+            ["bubble.wav"] = "https://github.com/Sigma-3131/HitSounds/raw/main/bubble.wav",
+            ["cock.wav"] = "https://github.com/Sigma-3131/HitSounds/raw/main/cock.wav",
+            ["cod.wav"] = "https://github.com/Sigma-3131/HitSounds/raw/main/cod.wav",
+            ["fatality.wav"] = "https://github.com/Sigma-3131/HitSounds/raw/main/fatality.wav",
+            ["phonk.wav"] = "https://github.com/Sigma-3131/HitSounds/raw/main/phonk.wav",
+            ["sparkle.wav"] = "https://github.com/Sigma-3131/HitSounds/raw/main/sparkle.wav",
         }
 
         if not isfolder("hitsounds") then
@@ -1348,16 +1336,6 @@ end
                 Script.Locals.World[Property] = Value
             end
 
-            --// No Recoil
-            if CallingScript.Name == "Framework" and Self == Camera and Property == "CFrame" and Settings.Misc.Exploits.Enabled and Settings.Misc.Exploits.NoRecoil then
-                return
-            end
-
-            --// No Jump Cooldown
-            if CallingScript.Name == "Framework" and Self == LocalPlayer.Character.Humanoid and Property == "JumpPower" and Settings.Misc.Exploits.Enabled and Settings.Misc.Exploits.NoJumpCooldown then
-                return
-            end
-
             return __newindex(Self, Property, Value)
         end))
     end
@@ -1406,7 +1384,8 @@ Tab:AddToggle({
 	Name = "Enable",
 	Default = false,
 	Callback = function(Value)
-		Settings.Combat.Enabled = Value
+	  Settings.Combat.Enabled = Value
+	  Settings.Combat.Silent = Value	  
 	end    
 })
 
@@ -1415,29 +1394,67 @@ Tab:AddBind({
 	Default = Enum.KeyCode.E,
 	Hold = false,
 	Callback = function()
-		if Settings.Combat.Enabled then
-                        Script.Locals.IsTargetting = not Script.Locals.IsTargetting
-
-                        local NewTarget = Script.Functions.GetClosestPlayer()
-                        Script.Locals.Target = Script.Locals.IsTargetting and NewTarget.Character and NewTarget or nil
-
-                        if Settings.Combat.Alerts then
-                         print('sigma')
-                        end
-                    end
+		if getgenv().UseKey == true and Settings.Combat.Enabled then
+		  Script.Locals.IsTargetting = not Script.Locals.IsTargetting
+		  
+		  local NewTarget = Script.Functions.GetClosestPlayer()
+		  Script.Locals.Target = Script.Locals.IsTargetting and NewTarget.Character and NewTarget or nil
+		  
+		  if Settings.Combat.Alerts then
+		    OrionLib:MakeNotification({
+		      Name = "Locked",
+		      Content = "Target: "..Script.Locals.Target.Character.Humanoid.DisplayName,
+		      Image = "rbxassetid://4483345998",
+		      Time = 3
+		    })
+		  end
+		end
 	end    
 })
 
+local tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "Lock Tool"
+tool.Activated:Connect(function()
+  if Settings.Combat.Enabled then
+    Script.Locals.IsTargetting = not Script.Locals.IsTargetting
+    
+    local NewTarget = Script.Functions.GetClosestPlayer()
+    Script.Locals.Target = Script.Locals.IsTargetting and NewTarget.Character and NewTarget or nil
+    
+    if Settings.Combat.Alerts then
+      OrionLib:MakeNotification({
+        Name = "Locked",
+        Content = "Target: "..Script.Locals.Target.Character.Humanoid.DisplayName,
+        Image = "rbxassetid://4483345998",
+        Time = 3
+      })
+    end
+  end
+end)
+tool.Parent = game.Players.LocalPlayer.Backpack
 
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+    tool.Parent = game.Players.LocalPlayer.Backpack
+end)
 
 
 
 
 Tab:AddToggle({
-	Name = "Silent",
+	Name = "Enable Keybind",
 	Default = false,
 	Callback = function(Value)
-		Settings.Combat.Silent = Value
+		getgenv().UseKey = Value
+	end    
+})
+
+
+Tab:AddToggle({
+	Name = "Alerts",
+	Default = false,
+	Callback = function(Value)
+		Settings.Combat.Alerts = Value
 	end    
 })
 
@@ -1563,6 +1580,7 @@ Tab:AddToggle({
 	end    
 })
 
+--[[
 local Section = Tab:AddSection({
 	Name = "Smoothing"
 })
@@ -1593,7 +1611,7 @@ Tab:AddSlider({
 		Settings.Combat.Smoothing.Vertical = Value
 	end    
 })
-
+--]]
 
 
 
@@ -1624,7 +1642,7 @@ Tab:AddSlider({
 	Max = 10,
 	Default = 0.09,
 	Color = Color3.fromRGB(255,255,255),
-	Increment = 0.1,
+	Increment = 0.01,
 	ValueName = "Sigma",
 	Callback = function(Value)
 Settings.Combat.Air.JumpOffset.Offset = Value		
@@ -1667,7 +1685,7 @@ Tab:AddColorpicker({
 Tab:AddDropdown({
 	Name = "Type",
 	Default = "Custom",
-	Options = {"Custom", "Random", "Random Target", "Target Strafe", "Local Strafe", "BoxRandom", "KillCheaters"},
+	Options = {"Custom", "Random", "Random Target", "Target Strafe", "Local Strafe", "BoxRandom", "Test", "KillCheaters"},
 	Callback = function(Value)
 Settings.AntiAim.CSync.Type = Value
 	end    
@@ -2380,10 +2398,3 @@ BTab:AddToggle({
 	end    
 })
 
-BTab:AddToggle({
-	Name = "No Recoil",
-	Default = false,
-	Callback = function(Value)
-		Settings.Misc.Exploits.NoRecoil = Value
-	end    
-})
