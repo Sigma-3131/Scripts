@@ -2398,3 +2398,10 @@ BTab:AddToggle({
 	end    
 })
 
+BTab:AddToggle({
+	Name = "No Recoil",
+	Default = false,
+	Callback = function(Value)
+		Settings.Misc.Exploits.NoRecoil = Value
+	end    
+})
