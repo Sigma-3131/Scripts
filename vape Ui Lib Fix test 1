@@ -4,7 +4,7 @@ local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
 local LocalPlayer = game:GetService("Players").LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
-local PresetColor = Color3.fromRGB(255,255,255)
+local PresetColor = Color3.fromRGB(44, 120, 224)
 local CloseBind = Enum.KeyCode.RightControl
 
 local ui = Instance.new("ScreenGui")
@@ -56,7 +56,7 @@ local function MakeDraggable(topbarobject, object)
 
                 input.Changed:Connect(
                     function()
-                        if input.UserInputState == Enum.UserInputState.End or input.UserInputType == Enum.UserInputType.Touch then
+                        if input.UserInputState == Enum.UserInputState.End then
                             Dragging = false
                         end
                     end
@@ -794,21 +794,21 @@ function lib:Window(text, preset, closebind)
             end
             SlideCircle.InputBegan:Connect(
                 function(input)
-                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
                         dragging = true
                     end
                 end
             )
             SlideCircle.InputEnded:Connect(
                 function(input)
-                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
                         dragging = false
                     end
                 end
             )
             game:GetService("UserInputService").InputChanged:Connect(
                 function(input)
-                    if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+                    if dragging and input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
                         move(input)
                     end
                 end
@@ -1283,7 +1283,7 @@ function lib:Window(text, preset, closebind)
 
             Color.InputBegan:Connect(
                 function(input)
-                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
                         if RainbowColorPicker then
                             return
                         end
@@ -1315,7 +1315,7 @@ function lib:Window(text, preset, closebind)
 
             Color.InputEnded:Connect(
                 function(input)
-                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
                         if ColorInput then
                             ColorInput:Disconnect()
                         end
@@ -1325,7 +1325,7 @@ function lib:Window(text, preset, closebind)
 
             Hue.InputBegan:Connect(
                 function(input)
-                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
                         if RainbowColorPicker then
                             return
                         end
@@ -1353,7 +1353,7 @@ function lib:Window(text, preset, closebind)
 
             Hue.InputEnded:Connect(
                 function(input)
-                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
                         if HueInput then
                             HueInput:Disconnect()
                         end
