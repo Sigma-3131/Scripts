@@ -794,7 +794,7 @@ function lib:Window(text, preset, closebind)
             end
             SlideCircle.InputBegan:Connect(
                 function(input)
-                    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
                         dragging = true
                     end
                 end
@@ -808,7 +808,7 @@ function lib:Window(text, preset, closebind)
             )
             game:GetService("UserInputService").InputChanged:Connect(
                 function(input)
-                    if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+                    if dragging and input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
                         move(input)
                     end
                 end
