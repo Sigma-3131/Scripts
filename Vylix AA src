@@ -1,0 +1,65 @@
+game:GetService("RunService").Heartbeat:Connect(function()
+  local hrp, hum = game.Players.LocalPlayer.Character.HumanoidRootPart, game.Players.LocalPlayer.Character.Humanoid
+  local velocity, cframe = hrp.Velocity, hrp.CFrame
+  if Settings.Custom.Enabled then
+    hrp.Velocity =
+    Vector3.new(Settings.Custom.X, Settings.Custom.Y, Settings.Custom.Z)
+    game:GetService("RunService").RenderStepped:Wait()
+    hrp.Velocity = velocity
+  end
+  if Settings.Up.Enabled then
+    hrp.Velocity =
+    Vector3.new(velocity.X, Settings.Up.Amount, velocity.Z)
+    game:GetService("RunService").RenderStepped:Wait()
+    hrp.Velocity = velocity
+  end
+  if Settings.Down.Enabled then
+    hrp.Velocity =
+    Vector3.new(velocity.X, Settings.Down.Amount, velocity.Z)
+    game:GetService("RunService").RenderStepped:Wait()
+    hrp.Velocity = velocity
+  end
+  if Settings.VelMultiply.Enabled then
+    hrp.Velocity = velocity *
+    Vector3.new(Settings.VelMultiply.WalkAmt, Settings.VelMultiply.JumpAmt, Settings.VelMultiply.WalkAmt)
+    game:GetService("RunService").RenderStepped:Wait()
+    hrp.Velocity = velocity
+  end
+  if Settings.LookVec.Enabled then
+    hrp.Velocity = cframe.lookVector *
+    Settings.LookVec.Amount
+    game:GetService("RunService").RenderStepped:Wait()
+    hrp.Velocity = velocity
+  end
+  if Settings.Reverse.Enabled then
+    if Settings.Reverse.Type == "CFrame" then
+      hrp.CFrame = cframe -
+      hum.MoveDirection * Settings.Reverse.Amount / 10
+    else
+      hrp.Velocity = velocity *
+      Vector3.new(-Settings.Reverse.Amount / 2.5, 1, -Settings.Reverse.Amount / 2.5)
+      game:GetService("RunService").RenderStepped:Wait()
+      hrp.Velocity = velocity
+    end
+  end
+  if Settings.Confusion.Enabled then
+    hrp.CFrame = cframe *
+    CFrame.new(math.random(1, 2) == 1 and
+    Settings.Confusion.Amount
+    or -Settings.Confusion.Amount, 0, 0)
+  end
+  if Settings.PredBreaker then
+    hrp.Velocity =
+    velocity * 0
+    game:GetService("RunService").RenderStepped:Wait()
+    hrp.Velocity = velocity
+  end
+  if Settings.Desync.Enabled then
+    hrp.Velocity =
+    Vector3.new(Settings.Desync.X, Settings.Desync.Y, Settings.Desync.Z)
+    hrp.CFrame = cframe *
+    CFrame.Angles(0, math.rad(Settings.Desync.Angles), 0)
+    game:GetService("RunService").RenderStepped:Wait()
+    hrp.Velocity = velocity
+  end
+end)
