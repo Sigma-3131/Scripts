@@ -1622,7 +1622,7 @@ do
 		return module
 	end
 
-	function section:addSlider(title, default, min, max, callback)
+	function section:addSlider(data)
 		local this = {}
 		this.title = data.title
 		this.min = data.min or 0
