@@ -1,4 +1,4 @@
--- init
+-- rizz
 local player = game.Players.LocalPlayer
 local mouse = player:GetMouse()
 
@@ -166,7 +166,7 @@ do
 		local dragInput, mousePos, framePos
 
 		frame.InputBegan:Connect(function(input)
-			if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 				dragging = true
 				mousePos = input.Position
 				framePos = parent.Position
@@ -180,7 +180,7 @@ do
 		end)
 
 		frame.InputChanged:Connect(function(input)
-			if input.UserInputType == Enum.UserInputType.MouseMovement then
+			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
 				dragInput = input
 			end
 		end)
@@ -1448,7 +1448,7 @@ do
 				local focused
 
 				textbox.Focused:Connect(function()
-					focused = true
+					focused = false
 				end)
 
 				textbox.FocusLost:Connect(function()
@@ -1663,7 +1663,7 @@ do
 				BackgroundTransparency = 1,
 				BorderSizePixel = 0,
 				Position = UDim2.new(1, -30, 0, 6),
-				Size = UDim2.new(0, 20, 0, 16),
+				Size = UDim2.new(0, 20, 0, 35),
 				ZIndex = 3,
 				Font = Enum.Font.GothamSemibold,
 				Text = this.default,
@@ -1738,7 +1738,7 @@ do
 		end)
 
 		slider.MouseButton1Down:Connect(function()
-			dragging = true
+			dragging = false
 
 			while dragging do
 				utility:Tween(circle, {ImageTransparency = 0}, 0.1)
