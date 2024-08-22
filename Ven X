@@ -166,13 +166,13 @@ do
 		local dragInput, mousePos, framePos
 
 		frame.InputBegan:Connect(function(input)
-			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			if input.UserInputType == Enum.UserInputType.MouseButton1 then
 				dragging = true
 				mousePos = input.Position
 				framePos = parent.Position
 
 				input.Changed:Connect(function()
-					if input.UserInputState == Enum.UserInputState.End or input.UserInputType == Enum.UserInputType.Touch then
+					if input.UserInputState == Enum.UserInputState.End then
 						dragging = false
 					end
 				end)
